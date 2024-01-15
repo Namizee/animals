@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}Registration{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('form') }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('form') }}
+{% endblock %}
+{% block body %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title title__center">Регистрация</h1>
+            {{ form_start(form) }}
+            <div class="form__field">
+                {{ form_label(form.firstName, 'Имя', {'label_attr':{'class':'form__label'}})}}
+                {{ form_widget(form.firstName) }}
+                <div class="form__error">
+                    {{ form_errors(form.firstName) }}
+                </div>
+            </div>
+            <div class="form__field">
+                {{ form_label(form.firstName, 'Фамилия', {'label_attr':{'class':'form__label'}})}}
+                {{ form_widget(form.secondName) }}
+                <div class="form__error">
+                    {{ form_errors(form.secondName) }}
+                </div>
+            </div>
+            <div class="form__field">
+                {{ form_label(form.firstName, 'E-mail', {'label_attr':{'class':'form__label'}})}}
+                {{ form_widget(form.email) }}
+                <div class="form__error">
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+            <div class="form__field">
+                {{ form_label(form.firstName, 'Пароль', {'label_attr':{'class':'form__label'}})}}
+                {{ form_widget(form.plainPassword) }}
+                <div class="form__error">
+                    {{ form_errors(form.plainPassword) }}
+                </div>
+            </div>
+            <div class="form__field">
+                {{ form_label(form.firstName, 'Пароль (подтверждение)', {'label_attr':{'class':'form__label'}})}}
+                {{ form_widget(form.plainConfirmPassword) }}
+                <div class="form__error">
+                    {{ form_errors(form.plainConfirmPassword) }}
+                </div>
+            </div>
+            {{ form_widget(form.register) }}
+        </div>
+        {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

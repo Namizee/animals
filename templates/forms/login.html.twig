@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}Login{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('form') }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('form') }}
+{% endblock %}
+{% block body %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title title__center">Вход</h1>
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <form class="form" action="{{ path('user_login') }}" method="post" novalidate="novalidate">
+                <div class="form__field">
+                    <label class="form__label" for="username">E-mail</label>
+                    <input class="form__input" type="text" id="username" name="_username" value="{{ last_username }}"/>
+                </div>
+                <div class="form__field">
+                    <label class="form__label" for="password">Пароль</label>
+                    <input class="form__input" type="password" id="password" name="_password"/>
+                </div>
+                <button class="btn" type="submit">Войти</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

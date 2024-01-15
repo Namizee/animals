@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+    <section class="section">
+        <div class="container">
+            <p>Привет, {{ app.user.firstName }}!</p>
+        </div>
+    </section>
+{% endblock %}
