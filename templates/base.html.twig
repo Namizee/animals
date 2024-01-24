@@ -13,10 +13,13 @@
     </head>
     <body>
         {% block header %}
-            <header class="header">
+            <header class="header bg-beige">
                 <div class="container">
                     <div class="header__container">
-                        <a class="logo" href="{{ path('home_index') }}">Лого</a>
+                        <a class="logo" href="{{ path('home_index') }}">
+                            <p class="logo__title">Милый дом</p>
+                            <p class="logo__text">Приют для животных в Минске</p>
+                        </a>
                         <nav class="nav">
                             <ul class="nav__list">
                                 <li class="nav__item">

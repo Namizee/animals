@@ -1,9 +1,30 @@
 {% extends 'base.html.twig' %}
 {% block title %}Home{% endblock %}
 {% block body %}
-    <section class="section">
+    <section class="section bg-yellow">
         <div class="container">
-            <p>Привет, {{ app.user.firstName }}!</p>
+            <p class="preview">для кого мы ищем дом</p>
+            <h3 class="title title-top">
+                Наши четвероногие друзья
+            </h3>
+            <div class="description">
+                <p class="description__text">
+                    Наш каталог и бла бла бла, заберите себе кого-нибудь домой
+                </p>
+                <p class="description__text">
+                    Наш каталог и бла бла бла, заберите себе кого-нибудь домой
+                </p>
+            </div>
+            <div class="categories">
+                <div class="categories__items">
+                    {% for category in categories %}
+                        <a href="{{ path('animal_categories', {slug: category.slug}) }}" class="categories__item">
+                            <img class="categories__item-img" src="{{ asset('build/images/categories/' ~ category.image) }}" alt="{{ category.title }}">
+                            <p class="categories__item-title">{{ category.name }}</p>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </section>
 {% endblock %}

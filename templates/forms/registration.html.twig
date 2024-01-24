@@ -11,7 +11,7 @@
 {% block body %}
     <section class="section">
         <div class="container">
-            <h1 class="title title__center">Регистрация</h1>
+            <h1 class="title title-center">Регистрация</h1>
             {{ form_start(form) }}
             <div class="form__field">
                 {{ form_label(form.firstName, 'Имя', {'label_attr':{'class':'form__label'}})}}
@@ -51,6 +51,5 @@
             {{ form_widget(form.register) }}
         </div>
         {{ form_end(form) }}
-        </div>
     </section>
 {% endblock %}

@@ -2,14 +2,24 @@
 
 namespace App\Controller;
 
+use App\Repository\AnimalCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+
+    public function __construct(private AnimalCategoryRepository $animalCategoryRepository)
+    {
+    }
+
     #[Route(path: '/', name: 'home_index')]
     public function index()
     {
-        return $this->render('home.html.twig');
+        $categories = $this->animalCategoryRepository->findAll();
+
+        return $this->render('home.html.twig', [
+            'categories' => $categories,
+        ]);
     }
 }

@@ -46,10 +46,12 @@ class AppFixtures extends Fixture
 
     private function loadAnimalCategory(ObjectManager $manager): void
     {
-        foreach ($this->getAnimalCategoryData() as $title) {
+        foreach ($this->getAnimalCategoryData() as [$title, $name, $image]) {
             $animalCategory = new AnimalCategory();
             $animalCategory->setTitle($title);
-            $animalCategory->setSlug($this->slugger->slug($title));
+            $animalCategory->setSlug($this->slugger->slug($title)->lower());
+            $animalCategory->setName($name);
+            $animalCategory->setImage($image);
 
             $manager->persist($animalCategory);
             $this->addReference('category-'.$title, $animalCategory);
@@ -86,7 +88,12 @@ class AppFixtures extends Fixture
 
     private function getAnimalCategoryData(): array
     {
-        return ['Dog', 'Puppy', 'Cat', 'Kitten'];
+        return [
+            ['Dog', 'Собаки', 'dog.png'],
+            ['Puppy', 'Щенки', 'puppy.png'],
+            ['Cat', 'Кошки', 'cat.png'],
+            ['Kitten', 'Котята', 'kitten.png'],
+        ];
     }
 
     private function getAnimalData(): array
@@ -102,7 +109,7 @@ class AppFixtures extends Fixture
                 $this->getRandomText(),
                 $this->getRandomImage()[random_int(0, 1)],
                 new \DateTimeImmutable('now - '.$i.'days'),
-                $this->getReference('category-'.$this->getAnimalCategoryData()[random_int(0, 3)]),
+                $this->getReference('category-'.$this->getAnimalCategoryData()[random_int(0, 3)][0]),
             ];
         }
 

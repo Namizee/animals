@@ -17,7 +17,13 @@ class AnimalCategory
     private string $title;
 
     #[ORM\Column(type: 'string', length: 255)]
+    private string $name;
+
+    #[ORM\Column(type: 'string', length: 255)]
     private string $slug;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $image;
 
     public function getId(): ?int
     {
@@ -44,6 +50,30 @@ class AnimalCategory
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -5,7 +5,7 @@
 @import "media";
 
 .header {
-  padding: 32px 0;
+  padding: 16px 0;
 
   &__container {
     display: flex;
@@ -15,7 +15,16 @@
 }
 
 .logo {
-  color: #828282;
+  color: #0D6253;
+
+  &__title {
+    font-size: 48px;
+
+  }
+
+  &__text {
+    letter-spacing: 1px;
+  }
 }
 
 .nav {
@@ -28,12 +37,8 @@
   }
 
   &__link {
-    color: #828282;
-    transition: color .3s;
-
-    &:hover {
-      color: #070707;
-    }
+    font-size: 24px;
+    color: #1E1E1E;
   }
 }
 
@@ -51,4 +56,28 @@
   border: none;
   border-radius: 4px;
   background-color: #F2C94C;
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  @extend %roboto-700;
+  letter-spacing: 2px;
+
+  &:before {
+    content: '';
+    width: 72px;
+    height: 2px;
+    margin: 2px 24px 0 0;
+    background-color: #1D2130;
+  }
+}
+
+.description {
+  margin-top: 50px;
+  color: #525560;
+
+  &__text + &__text {
+      margin-top: 16px;
+  }
 }

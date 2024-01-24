@@ -12,8 +12,17 @@ body {
 }
 
 .section {
-  padding: 100px 0;
+  padding: 80px 0;
 }
+
+.bg-beige {
+  background-color: #FCEDC6;
+}
+
+.bg-yellow {
+  background-color: #F2C94C;
+}
+
 
 .container {
   max-width: 1260px;
@@ -23,10 +32,14 @@ body {
 
 .title {
   @extend %roboto-700;
-  font-size: 48px;
+  font-size: 50px;
   line-height: 1.2;
 
-  &__center {
+  &-center {
     text-align: center;
+  }
+
+  &-top {
+    margin-top: 55px;
   }
 }
