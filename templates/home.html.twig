@@ -18,7 +18,7 @@
             <div class="categories">
                 <div class="categories__items">
                     {% for category in categories %}
-                        <a href="{{ path('animal_categories', {slug: category.slug}) }}" class="categories__item">
+                        <a href="{{ path('animals_category_paginated', {slug: category.slug}) }}" class="categories__item">
                             <img class="categories__item-img" src="{{ asset('build/images/categories/' ~ category.image) }}" alt="{{ category.title }}">
                             <p class="categories__item-title">{{ category.name }}</p>
                         </a>

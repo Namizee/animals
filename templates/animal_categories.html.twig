@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}Animal categories{% endblock %}
+{% block body %}
+    <section class="section">
+        <div class="container">
+            <h3 class="title title-top">
+                Наши четвероногие друзья
+            </h3>
+            <div class="categories">
+                <div class="categories__items">
+                    {% for category in categories %}
+                        <a href="{{ path('animals_category_paginated', {slug: category.slug}) }}" class="categories__item">
+                            <img class="categories__item-img" src="{{ asset('build/images/categories/' ~ category.image) }}" alt="{{ category.title }}">
+                            <p class="categories__item-title">{{ category.name }}</p>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="animals">
+                <div class="animals_items">
+                    {% for animal in pagination %}
+                        <a href="#" class="animals__item">
+                            <p class="animals__item-title">{{ animal.title }}</p>
+                            <p class="animals__item-description">{{ animal.description }}</p>
+                            {% if category is null %}
+                                <a class="animals__item-description" href="{{ path('animals_category_paginated', {slug: animal.category.slug}) }}">{{ animal.category.name }}</a>
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
