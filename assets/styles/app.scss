@@ -113,3 +113,20 @@
     }
   }
 }
+
+.about {
+  display: flex;
+
+  &__left {
+    width: 65%;
+    padding-right: 50px;
+  }
+
+  &__right {
+    width: 35%;
+
+    &-image {
+      width: 100%;
+    }
+  }
+}
