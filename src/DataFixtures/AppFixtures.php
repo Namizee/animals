@@ -46,12 +46,13 @@ class AppFixtures extends Fixture
 
     private function loadAnimalCategory(ObjectManager $manager): void
     {
-        foreach ($this->getAnimalCategoryData() as [$title, $name, $image]) {
+        foreach ($this->getAnimalCategoryData() as [$title, $name, $image, $description]) {
             $animalCategory = new AnimalCategory();
             $animalCategory->setTitle($title);
             $animalCategory->setSlug($this->slugger->slug($title)->lower());
             $animalCategory->setName($name);
             $animalCategory->setImage($image);
+            $animalCategory->setDescription($description);
 
             $manager->persist($animalCategory);
             $this->addReference('category-'.$title, $animalCategory);
@@ -89,10 +90,10 @@ class AppFixtures extends Fixture
     private function getAnimalCategoryData(): array
     {
         return [
-            ['Dog', 'Собаки', 'dog.png'],
-            ['Puppy', 'Щенки', 'puppy.png'],
-            ['Cat', 'Кошки', 'cat.png'],
-            ['Kitten', 'Котята', 'kitten.png'],
+            ['Dog', 'Собаки', 'dog.png', 'Возраст от 6 месяцев'],
+            ['Puppy', 'Щенки', 'puppy.png', 'Возраст до 6 месяцев'],
+            ['Cat', 'Кошки', 'cat.png', 'Возраст от 6 месяцев'],
+            ['Kitten', 'Котята', 'kitten.png', 'Возраст до 6 месяцев'],
         ];
     }
 

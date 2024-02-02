@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Home{% endblock %}
 {% block body %}
-    <section class="section bg-yellow">
+    <section class="section bg-beige">
         <div class="container">
             <p class="preview">для кого мы ищем дом</p>
             <h3 class="title title-top">
@@ -20,7 +20,10 @@
                     {% for category in categories %}
                         <a href="{{ path('animals_category_paginated', {slug: category.slug}) }}" class="categories__item">
                             <img class="categories__item-img" src="{{ asset('build/images/categories/' ~ category.image) }}" alt="{{ category.title }}">
-                            <p class="categories__item-title">{{ category.name }}</p>
+                            <div class="categories__item-info">
+                                <p class="categories__item-title">{{ category.name }}</p>
+                                <p class="categories__item-description">{{ category.description }}</p>
+                            </div>
                         </a>
                     {% endfor %}
                 </div>

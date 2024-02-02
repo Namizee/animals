@@ -81,3 +81,35 @@
       margin-top: 16px;
   }
 }
+
+.categories {
+  margin-top: 80px;
+
+  &__items {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 -25px;
+  }
+
+  &__item {
+    width: calc(25% - 50px);
+    color: #000000;
+    text-align: center;
+    margin: 0 25px;
+    background: #FAFAFA;
+    border-radius: 10px;
+
+    &-info {
+      padding: 20px 10px;
+    }
+
+    &-title {
+      font-size: 20px;
+    }
+
+    &-description {
+      font-size: 12px;
+      margin-top: 15px;
+    }
+  }
+}
