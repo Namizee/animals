@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Profile{% endblock %}
+{% block body %}
+        <section class="section">
+                <div class="container">
+                        <h3 class="title title-top">
+                                Ваши четвероногие друзья
+                        </h3>
+                        {% for animal in animals %}
+                        <p>{{ animal.title }}</p>
+                        <p>{{ animal.category.name }}</p>
+                         <p>---------------------------</p>
+                        {% endfor %}
+                </div>
+        </section>
+{% endblock %}
