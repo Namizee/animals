@@ -6,6 +6,7 @@ use App\Entity\Animal;
 use App\Entity\User;
 use App\Form\AnimalType;
 use App\Repository\AnimalRepository;
+use App\Service\ImageUploadService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,14 +32,22 @@ class ProfileController extends AbstractController
     public function new(
         #[CurrentUser] User $user,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        ImageUploadService $imageUploadService,
     ): Response {
         $form = $this->createForm(AnimalType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // TODO::write validator for image
+            $uploadedImage = $form->get('image')->getData();
+            $newImageName = $imageUploadService->upload($uploadedImage);
             $animal = $form->getData();
+
+            /* @var Animal $animal */
+
             $animal->setUser($user);
+            $animal->setImage($newImageName);
 
             $entityManager->persist($animal);
             $entityManager->flush();

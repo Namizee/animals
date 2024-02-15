@@ -19,27 +19,27 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('firstName', TextType::class, [
                 'attr' => [
-                    'class' => 'form__input',
+                    'class' => 'form__control form__input',
                 ],
             ])
             ->add('secondName', TextType::class, [
                 'attr' => [
-                    'class' => 'form__input',
+                    'class' => 'form__control form__input',
                 ],
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form__input',
+                    'class' => 'form__control form__input',
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 'attr' => [
-                    'class' => 'form__input',
+                    'class' => 'form__control form__input',
                 ],
             ])
             ->add('plainConfirmPassword', PasswordType::class, [
                 'attr' => [
-                    'class' => 'form__input',
+                    'class' => 'form__control form__input',
                 ],
             ])
             ->add('register', SubmitType::class, [

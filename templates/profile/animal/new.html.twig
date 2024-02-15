@@ -1,9 +1,46 @@
 {% extends 'base.html.twig' %}
-{% block title %}CREATE NEW animal!{% endblock %}
+{% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('form') }}
+{% endblock %}
+{% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('form') }}
+{% endblock %}
 {% block body %}
         <section class="section">
                 <div class="container">
-                        {{ form(form) }}
+                        <h1 class="title title-center">Добавить запись</h1>
+                        {{ form_start(form) }}
+                        <div class="form__field">
+                                {{ form_label(form.title, 'Имя', {'label_attr':{'class':'form__label'}})}}
+                                {{ form_widget(form.title) }}
+                                <div class="form__error">
+                                        {{ form_errors(form.title) }}
+                                </div>
+                        </div>
+                        <div class="form__field">
+                                {{ form_label(form.description, 'Описание', {'label_attr':{'class':'form__label'}})}}
+                                {{ form_widget(form.description) }}
+                                <div class="form__error">
+                                        {{ form_errors(form.description) }}
+                                </div>
+                        </div>
+                        <div class="form__field">
+                                {{ form_label(form.category, 'Категория', {'label_attr':{'class':'form__label'}})}}
+                                {{ form_widget(form.category) }}
+                                <div class="form__error">
+                                        {{ form_errors(form.category) }}
+                                </div>
+                        </div>
+                        <div class="form__field">
+                                {{ form_label(form.image, 'Фото', {'label_attr':{'class':'form__label'}})}}
+                                {{ form_widget(form.image) }}
+                                <div class="form__error">
+                                        {{ form_errors(form.image) }}
+                                </div>
+                        </div>
+                        {{ form_end(form) }}
                 </div>
         </section>
 {% endblock %}
