@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Animal;
 use App\Repository\AnimalCategoryRepository;
 use App\Repository\AnimalRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -34,5 +35,11 @@ class AnimalController extends AbstractController
             'categories' => $categories,
             'category' => $category,
         ]);
+    }
+
+    #[Route('/animal/{id<\d+>}', name: 'animal')]
+    public function animal(Animal $animal): Response
+    {
+        return $this->render('animal.html.twig', ['animal' => $animal]);
     }
 }

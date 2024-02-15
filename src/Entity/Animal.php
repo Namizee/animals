@@ -23,7 +23,7 @@ class Animal
     #[ORM\Column(type: 'string', length: 255)]
     private string $image;
 
-    #[ORM\Column(type: 'date_immutable')]
+    #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeInterface $publicationDate;
 
     #[ORM\JoinColumn(nullable: false)]
@@ -33,6 +33,11 @@ class Animal
     #[ORM\JoinColumn(nullable: false)]
     #[ORM\ManyToOne(targetEntity: AnimalCategory::class)]
     private AnimalCategory $category;
+
+    public function __construct()
+    {
+        $this->publicationDate = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

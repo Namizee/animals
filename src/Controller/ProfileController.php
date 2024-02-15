@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Animal;
 use App\Entity\User;
+use App\Form\AnimalType;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,11 +27,56 @@ class ProfileController extends AbstractController
         return $this->render('profile/profile.html.twig', ['animals' => $userAnimals]);
     }
 
+    #[Route('/animal/new', name: 'profile_animal_new', methods: ['GET', 'POST'])]
+    public function new(
+        #[CurrentUser] User $user,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $form = $this->createForm(AnimalType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $animal = $form->getData();
+            $animal->setUser($user);
+
+            $entityManager->persist($animal);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Ваша запись успешно добавлена!');
+
+            return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('profile/animal/new.html.twig', ['form' => $form]);
+    }
+
     #[Route('/animal/{id<\d+>}', name: 'profile_animal_show', methods: ['GET'])]
     #[isGranted('show', 'animal')]
     public function show(Animal $animal): Response
     {
         return $this->render('profile/animal/show.html.twig', ['animal' => $animal]);
+    }
+
+    #[Route('/animal/{id<\d+>}/edit', name: 'profile_animal_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('edit', 'animal')]
+    public function edit(
+        Animal $animal,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $form = $this->createForm(AnimalType::class, $animal);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Ваша запись успешно добавлена!');
+
+            return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('profile/animal/edit.html.twig', ['form' => $form]);
     }
 
     #[Route('/animal/{id<\d+>}/delete', name: 'profile_animal_delete', methods: ['POST'])]
