@@ -34,10 +34,10 @@
                                 </div>
                         </div>
                         <div class="form__field">
-                                {{ form_label(form.image, 'Фото', {'label_attr':{'class':'form__label'}})}}
-                                {{ form_widget(form.image) }}
+                                {{ form_label(form.uploadedImage, 'Фото', {'label_attr':{'class':'form__label'}})}}
+                                {{ form_widget(form.uploadedImage) }}
                                 <div class="form__error">
-                                        {{ form_errors(form.image) }}
+                                        {{ form_errors(form.uploadedImage) }}
                                 </div>
                         </div>
                         {{ form_end(form) }}

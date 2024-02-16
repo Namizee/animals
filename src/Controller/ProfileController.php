@@ -39,8 +39,7 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO::write validator for image
-            $uploadedImage = $form->get('image')->getData();
+            $uploadedImage = $form->get('uploadedImage')->getData();
             $newImageName = $imageUploadService->upload($uploadedImage);
             $animal = $form->getData();
 

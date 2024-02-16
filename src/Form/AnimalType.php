@@ -34,8 +34,7 @@ class AnimalType extends AbstractType
                     'class' => 'form__control form__select',
                 ],
             ])
-            ->add('image', FileType::class, [
-                'mapped' => false,
+            ->add('uploadedImage', FileType::class, [
                 'attr' => [
                     'class' => 'form__control',
                 ],

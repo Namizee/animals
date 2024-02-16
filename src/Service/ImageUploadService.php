@@ -21,7 +21,7 @@ class ImageUploadService
         $newImageName = $imageSlug.'-'.uniqid().'.'.$file->guessExtension();
 
         try {
-            $file->move($this->getTargetDirectory(), $newImageName);
+            $file->move($this->targetDirectory, $newImageName);
         } catch (FileException $e) {
             // TODO::handle execption
         }

@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
 class Animal
@@ -19,6 +21,13 @@ class Animal
 
     #[ORM\Column(type: 'text')]
     private string $description;
+
+    #[Assert\Image(
+        maxSize: '1024K',
+        maxSizeMessage: 'Файл слишком большой!',
+        mimeTypesMessage: 'Неверный формат файла!'
+    )]
+    private File $uploadedImage;
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $image;
@@ -112,6 +121,18 @@ class Animal
     public function setCategory(AnimalCategory $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUploadedImage(): File
+    {
+        return $this->uploadedImage;
+    }
+
+    public function setUploadedImage(File $uploadedImage): static
+    {
+        $this->uploadedImage = $uploadedImage;
 
         return $this;
     }
