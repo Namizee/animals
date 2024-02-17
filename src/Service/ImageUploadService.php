@@ -14,17 +14,17 @@ class ImageUploadService
     ) {
     }
 
+    /**
+     * @param UploadedFile $file
+     * @return string
+     * @throws FileException
+     */
     public function upload(UploadedFile $file): string
     {
         $imageName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $imageSlug = $this->slugger->slug($imageName);
         $newImageName = $imageSlug.'-'.uniqid().'.'.$file->guessExtension();
-
-        try {
-            $file->move($this->targetDirectory, $newImageName);
-        } catch (FileException $e) {
-            // TODO::handle execption
-        }
+        $file->move($this->targetDirectory, $newImageName);
 
         return $newImageName;
     }
