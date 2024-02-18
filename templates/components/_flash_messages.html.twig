@@ -1,0 +1,11 @@
+{% if app.request.hasPreviousSession %}
+    <div class="flash-message">
+        {% for key, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="key">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
